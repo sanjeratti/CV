@@ -27,8 +27,8 @@
             </ul>  
             <div class="header-content">
                 <h4 class="header-subtitle" >Hello, I am</h4>
-                <h1 class="header-title">Sanzhar Abdykerimov</h1>
-                <h6 class="header-mono" >QA Automation engineer | Test Engineer</h6>
+                <h1 class="header-title">{{ resume.name }}</h1>
+                <h6 class="header-mono" >{{ resume.title }}</h6>
                 <button class="btn btn-primary btn-rounded"><i class="ti-printer pr-2"></i>Print Resume</button>
             </div>
         </div>
@@ -53,8 +53,8 @@
                 <ul class="navbar-nav brand">
                     <img src="{% static 'imgs/avatar.jpg' %}" alt="" class="brand-img">
                     <li class="brand-txt">
-                        <h5 class="brand-title">Sanzhar Abdykerimov</h5>
-                        <div class="brand-subtitle">QA Automation engineer | Test Engineer</div>
+                        <h5 class="brand-title">{{ resume.name }}</h5>
+                        <div class="brand-subtitle">{{ resume.title }}</div>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -76,8 +76,8 @@
             <div class="col-lg-4 about-card">
                 <h3 class="font-weight-light">Who am I ?</h3>
                 <span class="line mb-5"></span>
-                <h5 class="mb-3">QA Automation engineer | Python Web Developer Located In Our Lovely Earth</h5>
-                <p class="mt-20">Experienced QA Automation Engineer and Python Web Developer with a strong background in designing, developing, and maintaining automated test scripts and web applications. Proficient in Java, Python, and various testing frameworks, including Selenium WebDriver and Pytest. Skilled in building robust RESTful APIs using Django and FastAPI, managing databases with PostgreSQL, MySQL, MongoDB and SQLite, and implementing CI/CD pipelines with Docker, Jenkins and GitLab CI. Adept at collaborating in Agile Scrum environments, ensuring high-quality code through rigorous testing, and leveraging modern tools for monitoring and performance optimization. Proven track record of translating complex requirements into technical specifications and delivering scalable solutions. Seeking opportunities in European companies with relocation options.</p>
+                <h5 class="mb-3">{{ resume.about_heading }}</h5>
+                <p class="mt-20">{{ resume.about_text }}</p>
                 <button class="btn btn-outline-danger"><i class="icon-down-circled2 "></i>Download My CV</button>
             </div>
             <div class="col-lg-4 about-card">
@@ -85,10 +85,10 @@
                 <span class="line mb-5"></span>
                 <ul class="mt40 info list-unstyled">
 <!--                    <li><span>Birthdate</span> : 10/17/1988</li>-->
-                    <li><span>Email</span> : info@obozon.com</li>
-                    <li><span>Phone</span> : + (996) 555-155-551</li>
-                    <li><span>LinkedIn</span> : <a href="https://www.linkedin.com/in/sanzhar-abdykerimov/" target="_blank">https://www.linkedin.com/in/sanzhar-abdykerimov/</a> </li>
-                    <li><span>GitHub</span> : <a href="https://github.com/Sanjeratti">Sanjeratti</a> </li>
+                    <li><span>Email</span> : {{ resume.contacts.email }}</li>
+                    <li><span>Phone</span> : {{ resume.contacts.phone }}</li>
+                    <li><span>LinkedIn</span> : <a href="{{ resume.contacts.linkedin_url }}" target="_blank">{{ resume.contacts.linkedin_label }}</a> </li>
+                    <li><span>GitHub</span> : <a href="{{ resume.contacts.github_url }}">{{ resume.contacts.github_label }}</a> </li>
                    <!--                    <li><span>Address</span> :  Bishkek Kyrgyzstan</li>-->
                 </ul>
                 <ul class="social-icons pt-3">
@@ -102,30 +102,16 @@
             <div class="col-lg-4 about-card">
                 <h3 class="font-weight-light">My Expertise</h3>
                 <span class="line mb-5"></span>
+                {% for item in resume.expertise %}
                 <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-widget icon-lg"></i></div>
+                    <div class="col-1 text-danger pt-1"><i class="{{ item.icon }} icon-lg"></i></div>
                     <div class="col-10 ml-auto mr-3">
-                        <h6>QA Automation</h6>
-                        <p class="subtitle">Selenium WebDriver, TestNG, Pytest, REST Assured</p>
+                        <h6>{{ item.title }}</h6>
+                        <p class="subtitle">{{ item.subtitle }}</p>
                         <hr>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-paint-bucket icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Web Development</h6>
-                        <p class="subtitle">Django, FastAPI, DRF, PostgreSQL, MySQL, MongoDB, SQLite</p>
-                        <hr>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-stats-up icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Financial Analysis</h6>
-                        <p class="subtitle">Excel, Macros, Budget Planning, Data Analysis with Large Tables</p>
-                        <hr>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -144,41 +130,12 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <h6 class="title text-danger">2017 - Present</h6>
-                            <P>QA Automation engineer | Python Web Developer | Lightcode DEVs LLC, Bishkek, Kyrgyzstan</P>
-                            <P class="subtitle">Responsibilities as a QA Automation Engineer:
-Automated Testing Execution: Conducting comprehensive Front-end, Back-end, Functional, API, Smoke, Regression, and End-to-end testings to ensure the robustness and functionality of software products.
-Programming Expertise: Applying strong knowledge of the JAVA programming language and Object-Oriented Programming (OOP) concepts to develop and maintain automation frameworks and scripts.
-Utilization of Automation Tools: Employing framework build tools like Maven and automation tools like Selenium WebDriver with Java, TestNG, JUnit, Cucumber, and REST Assured for testing Client-Server and Web-based Applications.
-BDD Implementation: Implementing Behavior Development (BDD) using the Cucumber feature, Scenarios, and Step Definitions, for writing test scripts, and test cases.
-Responsibilities as a Python Web Developer:
-Web Application Development: Leveraging Python frameworks such as Django, Django Rest Framework (DRF), and FastAPI for developing and maintaining OOP scalable and user-friendly web applications.
-Technological Proficiency: Skillfully engaging with technologies like Grafana, Zookeeper, Kafka, ClickHouse, Elasticsearch, and Kibana to optimize application performance and facilitate efficient data analysis.
-Overall responsibilities:
-Database Management: Effectively managing PostgreSQL, MySQL, MongoDB, and SQLite databases to ensure seamless integration and data management within web applications.
-Containerization with Docker: Utilizing Docker for containerization, simplifying application deployment and management procedures.
-Continuous Integration and Version Control: Executing Continuous Integration using Jenkins, integrating Git/GitHub for efficient version control, and managing the base code.
-Agile Scrum Involvement: Participating in Agile Scrum ceremonies such as Sprint Grooming, Sprint Planning, Sprint Retrospective, and Scrum meetings to ensure collaboration and efficiency within the development team.</P>
-                            <hr>
-                            <h6 class="title text-danger">2018 - 2020</h6>
-                            <P>Lead program analyst engineer | OJSC Electric Power Plants, Bishkek, Kyrgyzstan</P>
-                            <P class="subtitle">Orchestrating Sprint Activities: Acted as a pivotal liaison between developers and finance professionals, ensuring seamless coordination and collaboration within sprint cycles.
-Translating Finance Team Requirements: Transformed intricate finance team requirements into comprehensive technical specifications for the 1C software, facilitating a smooth alignment between technical functionalities and financial needs.
-Overseeing Customization and Compliance: Led the oversight of customizing 1C software to meet specific finance team requisites, ensuring strict adherence to finance regulations and local legislation.
-Developing User Manuals and Guidelines: Spearheaded the development and maintenance of user manuals and guidelines, enhancing user experience and operational efficiency within the finance domain.</P>
-                            <hr>
-                            <h6 class="title text-danger">2017 - 2018</h6>
-                            <P>QA engineer in test | lberKyrgyz Wealth Group ltd., Bishkek, Kyrgyzstan</P>
-                            <P class="subtitle">Software Testing and Reporting: Conduct comprehensive manual testing of software application to identify defects, document issues accurately, and report findings to the development team using established protocols and tools.
-User Training and Software Presentation: Assist in presenting software functionalities to users, providing training and support as needed, ensuring a smooth user experience, and addressing queries or concerns.</P>
-                            <hr>
-                            <h6 class="title text-danger">2011 - 2016</h6>
-                            <P>Senior Financial analyst | OJSC Optima Bank, Bishkek, Kyrgyzstan</P>
-                            <P class="subtitle">Financial Analysis: Conduct comprehensive financial analysis to assess the bank's performance, including analyzing financial statements, evaluating financial risks, and identifying opportunities for improvement.
-Budgeting and Forecasting: Lead the budgeting process by developing financial forecasts, preparing annual budgets, and monitoring variances to ensure financial goals are met.
-Strategic Planning: Contribute to the development of financial strategies aligned with the bank's objectives, providing insights and recommendations to support decision-making at the executive level.
-Financial Reporting: Prepare and oversee the preparation of financial reports, presenting key financial information to management, stakeholders, and regulatory bodies accurately and in a timely manner.
-Process Improvement: Identify opportunities for process optimization and efficiency enhancement within financial operations, leading initiatives to streamline processes and improve overall performance.</P>
+                            {% for job in resume.experience %}
+                            <h6 class="title text-danger">{{ job.period }}</h6>
+                            <P>{{ job.role }}</P>
+                            <P class="subtitle">{{ job.description|linebreaksbr }}</P>
+                            {% if not forloop.last %}<hr>{% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -191,25 +148,11 @@ Process Improvement: Identify opportunities for process optimization and efficie
                             </div>
                         </div>
                         <div class="card-body">
-                            <h6 class="title text-danger">2006 - 2011</h6>
-                            <P>University degree | Kyrgyz-Russian Slavic University, Bishkek, Kyrgyzstan</P>
-<!--                            <P class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error corrupti recusandae obcaecati odit repellat ducimus cum, minus tempora aperiam at.</P>-->
-                            <hr>
-                            <h6 class="title text-danger">Present</h6>
-                            <P>Middle Python Developer - Yandex practicum</P>
-                            <hr>
-                            <h6 class="title text-danger">2023</h6>
-                            <P>Big Data Analytics - CDAC, Noida, INDIA</P>
-                            <hr>
-                            <h6 class="title text-danger">2020</h6>
-                            <P>Java, SDET</P>
-                            <hr>
-                            <h6 class="title text-danger">2020</h6>
-                            <P>Python Programming Language</P>
-                            <hr>
-                            <h6 class="title text-danger">2018</h6>
-                            <P>ProgrammerAyimdar - Grant IT training (US embassy Democratic Comission)</P>
-                            
+                            {% for edu in resume.education %}
+                            <h6 class="title text-danger">{{ edu.period }}</h6>
+                            <P>{{ edu.title }}</P>
+                            {% if not forloop.last %}<hr>{% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -222,46 +165,12 @@ Process Improvement: Identify opportunities for process optimization and efficie
                             </div>
                         </div>
                         <div class="card-body pb-2">
-                           <h6>Java | (OOP, ORM) | Python | HTML &amp; CSS</h6>
+                            {% for skill in resume.skills %}
+                           <h6>{{ skill.label }}</h6>
                             <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 97%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ skill.percent }}%" aria-valuenow="{{ skill.percent }}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <h6>TestNG, Selenium WebDriver/Grid, Selenide, JUnit, Cucumber, BDD, Rest Assured, JDBC</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Django, DRF, FastAPI</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>MongoDB, Postgres, MySQL, SQLite</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Docker</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>ETL, ElasticSearch, Redis, Kafka, RabbitMQ, ZooKeeper</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 60%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>CI/CD Jenkins</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                           <h6>Windows, Linux Shell Scripting</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Git, GitHub, GitLab</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Jira</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="card">
@@ -272,18 +181,12 @@ Process Improvement: Identify opportunities for process optimization and efficie
                             </div>
                         </div>
                         <div class="card-body pb-2">
-                           <h6>English</h6>
+                            {% for lang in resume.languages %}
+                           <h6>{{ lang.label }}</h6>
                             <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ lang.percent }}%" aria-valuenow="{{ lang.percent }}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <h6>Russian</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Kyrgyz</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -790,33 +693,25 @@ Process Improvement: Identify opportunities for process optimization and efficie
                                 <i class="ti-mobile icon-md"></i>
                             </div>
                             <div class="col-10 ">
-                                <h6 class="d-inline">Phone : <br> <span class="text-muted">+996 (555) 155551</span></h6>
+                                <h6 class="d-inline">Phone : <br> <span class="text-muted">{{ resume.contact_block.phone }}</span></h6>
                             </div>
                         </div>
-<!--                        <div class="row mb-2">-->
-<!--                            <div class="col-1 pt-1 mr-1">-->
-<!--                                <i class="ti-map-alt icon-md"></i>-->
-<!--                            </div>-->
-<!--                            <div class="col-10">-->
-<!--                                <h6 class="d-inline">Address :<br> <span class="text-muted">12345 Fake ST NoWhere AB Country.</span></h6>-->
-<!--                            </div>-->
-<!--                        </div>-->
                         <div class="row mb-2">
                             <div class="col-1 pt-1 mr-1">
                                 <i class="ti-envelope icon-md"></i>
                             </div>
                             <div class="col-10">
-                                <h6 class="d-inline">Email :<br> <span class="text-muted">info@sanzhar.com</span></h6>
+                                <h6 class="d-inline">Email :<br> <span class="text-muted">{{ resume.contact_block.email }}</span></h6>
                             </div>
                         </div>
-
-                        <div class="col-1 pt-1 mr-1">
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
                                 <i class="ti-envelope icon-md"></i>
                             </div>
                             <div class="col-10">
                                 <h6 class="d-inline">
                                     Email :<br>
-                                    <span class="text-muted">sanzhar@gmail.com</span>
+                                    <span class="text-muted">{{ resume.contact_block.email2 }}</span>
                                 </h6>
                             </div>
                         </div>
